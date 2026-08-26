@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getDashboardPath, saveAuthSession } from '../auth';
 
 export default function LandlordAuth() {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,12 +23,20 @@ export default function LandlordAuth() {
       const data = await response.json();
       
       if (response.ok) {
-        alert(`Success!`);
-        // If they log in, we save the digital ID badge to their browser
-        if (data.token) {
-            localStorage.setItem('token', data.token);
-            alert('Token saved securely!');
+        if (!isLogin) {
+          alert(data.message || 'Registration successful');
+          return;
         }
+
+        const dashboardPath = getDashboardPath(data.user?.role);
+
+        if (!data.token || !dashboardPath) {
+          alert('Error: Invalid authentication response');
+          return;
+        }
+
+        saveAuthSession(data.token, data.user.role);
+        navigate(dashboardPath, { replace: true });
       } else {
         alert(`Error: ${data.error}`);
       }

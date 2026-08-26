@@ -1,6 +1,10 @@
 import { GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
+import { getDashboardPath, saveAuthSession } from '../auth';
 
 export default function StudentHome() {
+  const navigate = useNavigate();
+
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const response = await fetch('http://localhost:5000/api/auth/google-login-student', {
@@ -12,8 +16,15 @@ export default function StudentHome() {
       const data = await response.json();
       
       if (response.ok) {
-        localStorage.setItem('student_token', data.token);
-        alert('Student successfully logged in! Welcome to SpartanSpaces.');
+        const dashboardPath = getDashboardPath(data.user?.role);
+
+        if (!data.token || !dashboardPath) {
+          alert('Login Failed: Invalid authentication response');
+          return;
+        }
+
+        saveAuthSession(data.token, data.user.role);
+        navigate(dashboardPath, { replace: true });
       } else {
         alert(`Login Failed: ${data.error}`);
       }
