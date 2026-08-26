@@ -459,6 +459,221 @@ a {
   font-weight: 750;
 }
 
+.admin-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.admin-stat-card {
+  min-height: 172px;
+}
+
+.admin-stat-value,
+.admin-stat-label {
+  display: block;
+  margin-top: 14px;
+  color: var(--color-black);
+  letter-spacing: 0;
+}
+
+.admin-stat-value {
+  font-size: 2.75rem;
+  line-height: 1;
+}
+
+.admin-stat-label {
+  font-size: 1.55rem;
+  line-height: 1.2;
+}
+
+.admin-panel {
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.admin-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-panel-header h2 {
+  margin: 8px 0 0;
+  color: var(--color-black);
+  font-size: 1.45rem;
+  letter-spacing: 0;
+}
+
+.admin-panel-header p:not(.card-kicker) {
+  margin: 8px 0 0;
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+
+.admin-count-badge,
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.admin-count-badge {
+  min-height: 34px;
+  padding: 0 12px;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-soft);
+}
+
+.admin-message {
+  margin: 18px 24px 0;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.admin-message-error {
+  color: var(--color-red-dark);
+  border: 1px solid var(--color-red-border);
+  background: var(--color-red-soft);
+}
+
+.admin-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th {
+  padding: 13px 20px;
+  color: var(--color-muted);
+  background: var(--color-surface-soft);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.admin-table td {
+  padding: 17px 20px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-ink);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-table tbody tr:hover {
+  background: var(--color-surface-soft);
+}
+
+.admin-id-cell {
+  color: var(--color-muted);
+  font-weight: 750;
+}
+
+.admin-email-cell {
+  font-weight: 700;
+}
+
+.status-badge {
+  min-height: 30px;
+  padding: 0 10px;
+}
+
+.status-pending {
+  color: var(--color-red-dark);
+  border: 1px solid var(--color-red-border);
+  background: var(--color-red-soft);
+}
+
+.admin-action-cell {
+  text-align: right;
+}
+
+.admin-approve-button {
+  min-width: 104px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius);
+  color: #ffffff;
+  background: var(--color-red);
+  cursor: pointer;
+  font-weight: 800;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.admin-approve-button:hover:not(:disabled) {
+  background: var(--color-red-dark);
+  box-shadow: 0 10px 20px rgba(181, 18, 27, 0.18);
+  transform: translateY(-1px);
+}
+
+.admin-approve-button:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+.admin-approve-button:focus-visible {
+  outline: 3px solid rgba(181, 18, 27, 0.3);
+  outline-offset: 3px;
+}
+
+.admin-empty-state {
+  min-height: 210px;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  padding: 32px;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.admin-empty-state strong {
+  color: var(--color-black);
+  font-size: 1.1rem;
+}
+
+.admin-empty-state p {
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .auth-hero {
   width: min(1180px, 100%);
   min-height: 100vh;
@@ -705,6 +920,20 @@ a {
 
   .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+
+  .admin-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-panel-header {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .admin-message {
+    margin-right: 20px;
+    margin-left: 20px;
   }
 
   .dashboard-card {
